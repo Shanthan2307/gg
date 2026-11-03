@@ -1,26 +1,133 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f7f6f3;
+  --surface: #ffffff;
+  --well: #f1f0ec;
+  --ink: #1b1a18;
+  --muted: #76726b;
+  --line: #e7e4de;
+  --accent: #d6492f; /* stamp red */
+  --accent-2: #2f7d5b; /* matcha */
+  --paper: #fffdf8;
+}
+
+[data-theme="dark"] {
+  --bg: #121110;
+  --surface: #1b1a18;
+  --well: #232220;
+  --ink: #f1eee8;
+  --muted: #9b968d;
+  --line: #2e2c29;
+  --accent: #ff6a4d;
+  --accent-2: #6cc49b;
+  --paper: #f4efe4;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-well: var(--well);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-matcha: var(--accent-2);
+  --color-paper: var(--paper);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
+  --font-script: var(--font-script);
+  --font-gothic: var(--font-gothic);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  transition: background 0.3s, color 0.3s;
 }
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+/* Kitchen-style card: soft outer frame, inner well for the demo */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02), 0 8px 24px -16px rgba(0, 0, 0, 0.12);
+}
+.well {
+  background: var(--well);
+  border-radius: 12px;
+}
+
+/* Perforated ticket edges */
+.ticket {
+  --notch: 14px;
+  -webkit-mask:
+    radial-gradient(circle var(--notch) at 0 62%, #0000 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% 62%, #0000 98%, #000) right / 51% 100% no-repeat;
+  mask:
+    radial-gradient(circle var(--notch) at 0 62%, #0000 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% 62%, #0000 98%, #000) right / 51% 100% no-repeat;
+}
+
+/* Zig-zag torn receipt edge */
+.receipt-edge {
+  -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 14px 100%;
+  mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 14px 100%;
+}
+
+/* Iridescent foil, reacts to --fx / --fy set by pointer */
+.foil {
+  position: relative;
+  overflow: hidden;
+}
+.foil::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.22;
+  background:
+    radial-gradient(circle at var(--fx, 50%) var(--fy, 50%), rgba(255, 255, 255, 0.9), transparent 45%),
+    linear-gradient(
+      calc(110deg + var(--fa, 0deg)),
+      #ff9ad5 0%, #a1f0ff 20%, #c8ff9e 40%, #ffe29a 60%, #c6a6ff 80%, #ff9ad5 100%
+    );
+  background-size: 100% 100%, 300% 300%;
+  background-position: center, calc(var(--fp, 50) * 1%) 50%;
+  transition: opacity 0.3s;
+}
+.foil:hover::after {
+  opacity: 0.38;
+}
+
+.grain {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes breathe { 0%, 100% { transform: scale(0.8); opacity: 0.6; } 50% { transform: scale(1.15); opacity: 0; } }
+@keyframes blink { 50% { opacity: 0; } }
