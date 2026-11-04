@@ -9,6 +9,9 @@ export const profile = {
   email: "Gargipathak@gmail.com",
   linkedin: "https://www.linkedin.com/in/garrgipathak/",
   github: "", // add when available
+  topmate: "https://topmate.io/garrgi",
+  x: "https://x.com/0xgarrgi",
+  resume: "/gargi-pathak-resume.pdf", // phone number removed from the public copy
   roles: [
     "building GPS for drones",
     "hackathon winner",

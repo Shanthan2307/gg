@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Instrument_Serif, Mrs_Saint_Delafield, UnifrakturCook } from "next/font/google";
+import { Great_Vibes, Inter, Instrument_Serif, JetBrains_Mono, Mrs_Saint_Delafield, Pinyon_Script, UnifrakturCook } from "next/font/google";
 import "./globals.css";
 import { SITE_URL } from "@/lib/site";
 
@@ -8,6 +8,9 @@ const mono = JetBrains_Mono({ variable: "--font-mono", subsets: ["latin"] });
 const display = Instrument_Serif({ variable: "--font-display", subsets: ["latin"], weight: "400", style: ["normal", "italic"] });
 const script = Mrs_Saint_Delafield({ variable: "--font-script", subsets: ["latin"], weight: "400" });
 const gothic = UnifrakturCook({ variable: "--font-gothic", subsets: ["latin"], weight: "700" });
+// Extra faces the hero signature rotates through
+const vibes = Great_Vibes({ variable: "--font-vibes", subsets: ["latin"], weight: "400" });
+const pinyon = Pinyon_Script({ variable: "--font-pinyon", subsets: ["latin"], weight: "400" });
 
 const title = "Gargi Pathak · The Build Log";
 const description =
@@ -29,12 +32,12 @@ const jsonLd = {
   jobTitle: "Software engineer",
   alumniOf: "Texas Tech University",
   address: { "@type": "PostalAddress", addressLocality: "San Francisco", addressRegion: "CA" },
-  sameAs: ["https://www.linkedin.com/in/garrgipathak/"],
+  sameAs: ["https://www.linkedin.com/in/garrgipathak/", "https://x.com/0xgarrgi", "https://topmate.io/garrgi"],
   url: SITE_URL,
 };
 
 // Set the theme before paint so there's no flash
-const themeScript = `try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}`;
+const themeScript = `try{var t=localStorage.getItem('theme');document.documentElement.dataset.theme=t==='matcha'?'matcha':'blossom'}catch(e){document.documentElement.dataset.theme='blossom'}`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -44,7 +47,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body
-        className={`${inter.variable} ${mono.variable} ${display.variable} ${script.variable} ${gothic.variable} antialiased`}
+        className={`${inter.variable} ${mono.variable} ${display.variable} ${script.variable} ${gothic.variable} ${vibes.variable} ${pinyon.variable} antialiased`}
       >
         <a href="#main" className="skip-link">
           Skip to the log

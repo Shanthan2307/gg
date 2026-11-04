@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { profile } from "@/content";
-import { SectionHead, TactileButton, useCopy } from "./ui";
+import { SectionHead, Stamp, TactileButton, useCopy } from "./ui";
 
 const tracks = [
   { side: "A", title: "Hi, I'm Gargi", length: 20 },
@@ -156,8 +156,14 @@ export default function SideB() {
             </div>
             <div className="mt-5 flex flex-wrap gap-3">
               <TactileButton href={`mailto:${profile.email}`}>Write to me ✉</TactileButton>
-              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
+              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="press flex items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
                 LinkedIn ↗
+              </a>
+              <a href={profile.x} target="_blank" rel="noopener noreferrer" className="press flex items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
+                X ↗
+              </a>
+              <a href={profile.topmate} target="_blank" rel="noopener noreferrer" className="press flex items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
+                Book a call on Topmate ↗
               </a>
               {profile.github && (
                 <a href={profile.github} target="_blank" rel="noopener noreferrer" className="flex items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
@@ -168,6 +174,34 @@ export default function SideB() {
           </div>
         </div>
       </div>
+
+      {/* Hiring card: a ticket stub that hands over the resume */}
+      <article id="hire" className="ticket card relative mt-16 flex flex-col overflow-visible sm:flex-row">
+        <div className="flex flex-1 flex-col p-6 sm:p-8">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">Admit one · New grad, May 2026</p>
+          <h3 className="mt-3 font-display text-4xl leading-none sm:text-5xl">
+            Wanna <em>hire me?</em>
+          </h3>
+          <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-muted">
+            Full stack and AI engineer with shipped internships, research awards and a drawer full of hackathon tickets. The whole log fits on one page.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <TactileButton href={profile.resume} download="Gargi-Pathak-Resume.pdf">
+              Download my resume <span aria-hidden>↓</span>
+            </TactileButton>
+            <a href={profile.resume} target="_blank" rel="noopener noreferrer" className="press flex h-10 items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
+              View in browser ↗
+            </a>
+            <a href={profile.topmate} target="_blank" rel="noopener noreferrer" className="press flex h-10 items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
+              Book a call ↗
+            </a>
+          </div>
+        </div>
+        <div className="mx-6 border-t-2 border-dashed border-line sm:mx-0 sm:my-6 sm:border-l-2 sm:border-t-0" />
+        <div className="flex items-center justify-center p-6 sm:w-[200px]">
+          <Stamp label="Open" sub="to work" rotate={-10} size={110} color="var(--accent-2)" />
+        </div>
+      </article>
 
       <footer className="mt-24 text-center font-mono text-[11px] text-muted">
         <p>✂ - - - - - - - - - - - - - - - - - - - - - - -</p>

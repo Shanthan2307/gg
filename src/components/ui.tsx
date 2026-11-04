@@ -64,11 +64,12 @@ export function ScrambleText({ words, interval = 2600, className }: { words: str
 }
 
 /* Tactile button: shaped face over a darker base that compresses on press */
-export function TactileButton({ children, href, onClick }: { children: React.ReactNode; href?: string; onClick?: () => void }) {
+export function TactileButton({ children, href, onClick, download }: { children: React.ReactNode; href?: string; onClick?: () => void; download?: string }) {
   const Tag = href ? "a" : "button";
   return (
     <Tag
       href={href}
+      download={download}
       onClick={onClick}
       className="group relative inline-block select-none rounded-[12px] bg-[#2a2826] pb-[5px] outline-none active:pb-[1px] active:translate-y-[4px] transition-all duration-100"
     >
@@ -173,10 +174,10 @@ export function Stamp({ label, sub, color = "var(--accent)", rotate = -12, size 
       animate={inView ? { scale: 1, opacity: 0.92, rotate } : {}}
       transition={{ type: "spring", stiffness: 420, damping: 18 }}
       style={{ width: size, height: size, color, borderColor: color }}
-      className="pointer-events-none flex flex-col items-center justify-center rounded-full border-[3px] border-double font-mono uppercase mix-blend-multiply dark:mix-blend-normal"
+      className="pointer-events-none flex flex-col items-center justify-center rounded-full border-[3px] border-double font-mono uppercase mix-blend-multiply"
     >
       <span className="text-[11px] font-bold tracking-[0.18em]">{label}</span>
-      {sub && <span className="mt-0.5 text-[8px] tracking-widest opacity-80">{sub}</span>}
+      {sub && <span className="mt-0.5 text-[8px] tracking-widest">{sub}</span>}
     </motion.div>
   );
 }

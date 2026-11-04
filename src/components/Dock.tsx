@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
+import { setMode, useMode } from "./theme";
 
 const items = [
   { href: "#top", label: "Home", icon: "⌂" },
@@ -14,38 +15,38 @@ const items = [
 ];
 
 function DockIcon({ mouseX, children, label, href, onClick }: { mouseX: MotionValue<number>; children: React.ReactNode; label: string; href?: string; onClick?: () => void }) {
-  const ref = useRef<HTMLAnchorElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const dist = useTransform(mouseX, (x) => {
     const r = ref.current?.getBoundingClientRect();
     return r ? x - (r.left + r.width / 2) : 999;
   });
   const size = useSpring(useTransform(dist, [-110, 0, 110], [36, 52, 36]), { stiffness: 300, damping: 22 });
-  return (
-    <motion.a
-      ref={ref}
-      href={href}
-      onClick={onClick}
-      aria-label={label}
-      style={{ width: size, height: size }}
-      className="group relative flex cursor-pointer items-center justify-center rounded-xl text-[15px] text-white/80 hover:bg-white/10 hover:text-white"
-    >
+  const className =
+    "group relative flex cursor-pointer items-center justify-center rounded-xl text-[15px] text-white/80 hover:bg-white/10 hover:text-white";
+  const inner = (
+    <>
       {children}
-      <span className="pointer-events-none absolute -top-8 whitespace-nowrap rounded-md bg-[#1b1a18] px-2 py-1 text-[11px] text-white opacity-0 transition-opacity group-hover:opacity-100">
+      <span className="pointer-events-none absolute -top-8 whitespace-nowrap rounded-md bg-[#1b1a18] px-2 py-1 text-[11px] text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
         {label}
       </span>
+    </>
+  );
+  // links navigate; the mode toggle is a real button so keyboards can reach it
+  return href ? (
+    <motion.a ref={ref as React.RefObject<HTMLAnchorElement>} href={href} aria-label={label} style={{ width: size, height: size }} className={className}>
+      {inner}
     </motion.a>
+  ) : (
+    <motion.button ref={ref as React.RefObject<HTMLButtonElement>} type="button" onClick={onClick} aria-label={label} style={{ width: size, height: size }} className={className}>
+      {inner}
+    </motion.button>
   );
 }
 
 export default function Dock() {
   const mouseX = useMotionValue(Infinity);
-  const toggle = () => {
-    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    document.documentElement.dataset.theme = next;
-    try {
-      localStorage.setItem("theme", next);
-    } catch {}
-  };
+  const mode = useMode();
+  const toggle = () => setMode(mode === "blossom" ? "matcha" : "blossom");
   return (
     <nav className="fixed inset-x-0 bottom-4 z-50 flex justify-center px-4">
       <div
@@ -59,8 +60,9 @@ export default function Dock() {
           </DockIcon>
         ))}
         <span className="mx-1 mb-2 h-5 w-px bg-white/15" />
-        <DockIcon mouseX={mouseX} label="Theme" onClick={toggle}>
-          ◐
+        {/* shows the mode you switch to */}
+        <DockIcon mouseX={mouseX} label={mode === "blossom" ? "Matcha mode" : "Cherry blossom mode"} onClick={toggle}>
+          <span aria-hidden>{mode === "blossom" ? "🍵" : "🌸"}</span>
         </DockIcon>
       </div>
     </nav>

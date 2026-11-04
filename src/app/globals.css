@@ -1,29 +1,31 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
-
-:root {
-  --bg: #f7f6f3;
-  --surface: #ffffff;
-  --well: #f1f0ec;
-  --ink: #1b1a18;
-  --muted: #69655e;
-  --line: #e7e4de;
-  --accent: #c9402a; /* stamp red */
+/* Two light modes: cherry blossom (default) and matcha. Both keep AA contrast for text. */
+:root,
+[data-theme="blossom"] {
+  --bg: #fbf0f1;
+  --surface: #fffafa;
+  --well: #f7e5e9;
+  --ink: #2b1a1f;
+  --muted: #6c5057;
+  --line: #efd5db;
+  --accent: #b5345a; /* sakura stamp */
   --accent-2: #2f7d5b; /* matcha */
-  --paper: #fffdf8;
+  --paper: #fffaf6;
+  --glow: rgba(244, 168, 190, 0.35);
 }
 
-[data-theme="dark"] {
-  --bg: #121110;
-  --surface: #1b1a18;
-  --well: #232220;
-  --ink: #f1eee8;
-  --muted: #9b968d;
-  --line: #2e2c29;
-  --accent: #ff6a4d;
-  --accent-2: #6cc49b;
-  --paper: #f4efe4;
+[data-theme="matcha"] {
+  --bg: #eef4e1;
+  --surface: #fbfdf5;
+  --well: #e3ecd0;
+  --ink: #1b2414;
+  --muted: #55624a;
+  --line: #d4e0be;
+  --accent: #3e6b1d; /* deep matcha stamp */
+  --accent-2: #4e7520;
+  --paper: #fcfdf6;
+  --glow: rgba(170, 205, 110, 0.35);
 }
 
 @theme inline {
@@ -48,7 +50,8 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background: radial-gradient(1200px 700px at 100% 0%, var(--glow), transparent 70%), var(--bg);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-inter), system-ui, sans-serif;
   transition: background 0.3s, color 0.3s;

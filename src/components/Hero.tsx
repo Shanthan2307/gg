@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { profile } from "@/content";
+import SeasonScene from "./SeasonScene";
 import { ScrambleText, TactileButton } from "./ui";
 
 /* Constellation background: drifting dots that link to each other and to the cursor */
@@ -79,24 +80,44 @@ function Constellation() {
   return <canvas ref={ref} className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden />;
 }
 
-/* Signature that draws itself on mount, then fills in */
+/* Each face is sized so the name fills about the same width and sits on the same baseline */
+const SIGNATURE_FACES = [
+  { family: "var(--font-script)", size: 150, y: 125 },
+  { family: "var(--font-vibes)", size: 128, y: 118 },
+  { family: "var(--font-gothic)", size: 118, y: 118 },
+  { family: "var(--font-pinyon)", size: 118, y: 122 },
+  { family: "var(--font-display)", size: 138, y: 122, italic: true },
+];
+const FACE_HOLD_MS = 10000;
+
+/* Signature that draws itself, fills in, and every 10 s redraws in the next face */
 function Signature({ text }: { text: string }) {
+  const [face, setFace] = useState(0);
+  useEffect(() => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => setFace((f) => (f + 1) % SIGNATURE_FACES.length), FACE_HOLD_MS);
+    return () => clearInterval(id);
+  }, []);
+  const f = SIGNATURE_FACES[face];
   return (
-    <svg viewBox="0 0 520 170" className="h-auto w-full max-w-[560px] lg:max-w-[700px]" role="img" aria-label={text}>
-      <motion.text
-        x="10"
-        y="125"
-        className="font-script"
-        style={{ fontSize: 150 }}
-        fill="var(--ink)"
-        stroke="var(--ink)"
-        strokeWidth={1.2}
-        initial={{ strokeDasharray: 1400, strokeDashoffset: 1400, fillOpacity: 0 }}
-        animate={{ strokeDashoffset: 0, fillOpacity: 1 }}
-        transition={{ strokeDashoffset: { duration: 2.6, ease: "easeInOut" }, fillOpacity: { delay: 2, duration: 0.8 } }}
-      >
-        {text}
-      </motion.text>
+    <svg viewBox="0 0 520 196" className="h-auto w-full max-w-[560px] lg:max-w-[700px]" role="img" aria-label={text}>
+      <AnimatePresence mode="wait">
+        <motion.text
+          key={face}
+          x="10"
+          y={f.y}
+          style={{ fontFamily: f.family, fontSize: f.size, fontStyle: f.italic ? "italic" : "normal" }}
+          fill="var(--ink)"
+          stroke="var(--ink)"
+          strokeWidth={1.2}
+          initial={{ strokeDasharray: 2400, strokeDashoffset: 2400, fillOpacity: 0, opacity: 1 }}
+          animate={{ strokeDashoffset: 0, fillOpacity: 1 }}
+          exit={{ opacity: 0, transition: { duration: 0.4 } }}
+          transition={{ strokeDashoffset: { duration: 2.6, ease: "easeInOut" }, fillOpacity: { delay: 2, duration: 0.8 } }}
+        >
+          {text}
+        </motion.text>
+      </AnimatePresence>
     </svg>
   );
 }
@@ -105,7 +126,8 @@ export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <Constellation />
-      <div className="relative mx-auto flex min-h-[92svh] max-w-5xl flex-col justify-center px-4 pb-24 pt-16 sm:px-6">
+      <SeasonScene />
+      <div className="relative z-10 mx-auto flex min-h-[92svh] max-w-5xl flex-col justify-center px-4 pb-48 pt-16 sm:px-6 md:pb-24">
         <div className="flex items-center gap-3">
           <span className="font-gothic text-2xl">Gargi&apos;s</span>
           <span className="text-sm text-muted">Build Log</span>
@@ -141,6 +163,9 @@ export default function Hero() {
           </TactileButton>
           <a href="#contact" className="inline-block py-1.5 text-sm text-muted underline-offset-4 hover:text-ink hover:underline">
             or say hi
+          </a>
+          <a href="#hire" className="inline-block py-1.5 text-sm text-muted underline-offset-4 hover:text-ink hover:underline">
+            · wanna hire me?
           </a>
         </div>
       </div>

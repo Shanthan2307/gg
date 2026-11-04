@@ -1,3 +1,4 @@
+import Ambient from "@/components/Ambient";
 import Dock from "@/components/Dock";
 import Motion from "@/components/Motion";
 import Hand from "@/components/Hand";
@@ -14,7 +15,8 @@ import Toolbox from "@/components/Toolbox";
 export default function Home() {
   return (
     <Motion>
-    <main id="main" className="overflow-x-clip">
+    <Ambient />
+    <main id="main" className="relative z-[1] overflow-x-clip">
       <Hero />
       <Numbers />
       <NowBuilding />

@@ -21,7 +21,7 @@ export default function Passport() {
 
       <div className="card relative overflow-hidden p-3 sm:p-5">
         {/* passport page */}
-        <div className="grain relative rounded-xl border border-line bg-[color-mix(in_oklab,var(--paper)_88%,var(--accent-2))] p-5 dark:bg-[#1f2420] sm:p-8">
+        <div className="grain relative rounded-xl border border-line bg-[color-mix(in_oklab,var(--paper)_88%,var(--accent-2))] p-5 sm:p-8">
           <div className="mb-6 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-muted">
             <span>Visas · Texas Tech University</span>
             <span>2022 to 2026</span>
@@ -40,7 +40,7 @@ export default function Passport() {
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ type: "spring", stiffness: 380, damping: 17, delay: (i % 5) * 0.07 }}
                   style={{ color: ink, borderColor: ink }}
-                  className={`mx-auto flex aspect-square w-full max-w-[130px] flex-col items-center justify-center border-[2.5px] border-dashed p-2 text-center ${shapes[i % shapes.length]} ${open === i ? "bg-white/60 dark:bg-white/5" : ""}`}
+                  className={`mx-auto flex aspect-square w-full max-w-[130px] flex-col items-center justify-center border-[2.5px] border-dashed p-2 text-center ${shapes[i % shapes.length]} ${open === i ? "bg-white/60" : ""}`}
                 >
                   <span className="text-2xl leading-none">{s.icon}</span>
                   <span className="mt-1.5 font-mono text-[9.5px] font-bold uppercase leading-tight tracking-wider">{s.title}</span>

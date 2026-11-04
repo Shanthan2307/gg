@@ -10,13 +10,9 @@
   --anatomy-mono: var(--font-mono), ui-monospace, monospace;
   margin: 0;
 }
-:root:not([data-theme="dark"]):not(#_) .resq.iso {
-  --anatomy-lit-top: #fff4f1;
-  --anatomy-lit-shade: #f6e2dc;
-}
-[data-theme="dark"]:not(#_) .resq.iso {
-  --anatomy-lit-top: #3a2620;
-  --anatomy-lit-shade: #2d1d18;
+:root:not(#_) .resq.iso {
+  --anatomy-lit-top: color-mix(in srgb, var(--accent) 6%, white);
+  --anatomy-lit-shade: color-mix(in srgb, var(--accent) 14%, white);
 }
 .resq .iso-plate {
   border-radius: 18px;
