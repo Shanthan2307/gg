@@ -9,6 +9,7 @@ function Quorum() {
   const nodes = 8;
   const [confirmed, setConfirmed] = useState(0);
   useEffect(() => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return setConfirmed(nodes);
     const id = setInterval(() => setConfirmed((c) => (c + 1) % (nodes + 3)), 650);
     return () => clearInterval(id);
   }, []);
@@ -68,8 +69,9 @@ function Voice() {
       }
       ctx.stroke();
       t += 0.08;
-      raf = requestAnimationFrame(draw);
+      if (!still) raf = requestAnimationFrame(draw);
     };
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
     draw();
     return () => cancelAnimationFrame(raf);
   }, []);
@@ -82,7 +84,7 @@ function Voice() {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-2 p-3">
       <canvas ref={ref} className="h-16 w-full" />
-      <button onClick={speak} className="relative flex h-8 items-center gap-2 rounded-full border border-line bg-surface px-3 font-mono text-[11px]">
+      <button onClick={speak} className="press relative flex h-8 items-center gap-2 rounded-full border border-line bg-surface px-3 font-mono text-[11px]">
         <AnimatePresence mode="wait">
           {state === "ok" ? (
             <motion.span key="ok" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="flex items-center gap-1.5 text-matcha">
@@ -118,9 +120,7 @@ function Insole() {
             <path d={path} fill={`color-mix(in oklab, var(--accent-2) ${30 + i * 7}%, var(--surface))`} stroke="var(--ink)" strokeOpacity="0.15" />
             {i === layers - 1 &&
               [[50, 30], [42, 60], [55, 70], [48, 112]].map(([x, y], k) => (
-                <circle key={k} cx={x} cy={y} r={5 - k * 0.5} fill="var(--accent)" opacity={0.65}>
-                  <animate attributeName="opacity" values="0.2;0.8;0.2" dur={`${1.4 + k * 0.3}s`} repeatCount="indefinite" />
-                </circle>
+                <circle key={k} cx={x} cy={y} r={5 - k * 0.5} fill="var(--accent)" opacity={0.65} style={{ animation: `pulse-dot ${1.4 + k * 0.3}s infinite` }} />
               ))}
           </svg>
         ))}
@@ -133,6 +133,7 @@ function Insole() {
 function Mars() {
   const [t, setT] = useState(0);
   useEffect(() => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let raf = 0;
     const tick = () => {
       setT((v) => v + 0.004);

@@ -65,7 +65,7 @@ export default function Hand() {
               onPointerEnter={() => setHover(i)}
               onPointerLeave={() => setHover(null)}
               onClick={() => setPlayed(isPlayed ? null : i)}
-              aria-label={`${c.title}: ${c.detail}`}
+             
               aria-pressed={isPlayed}
               className="absolute bottom-6 left-1/2 -ml-[75px] h-[215px] w-[150px] cursor-pointer sm:-ml-[87px] sm:h-[250px] sm:w-[175px]"
               style={{ zIndex: isPlayed ? 50 : lifted ? 40 : i, transformOrigin: "50% 180%" }}

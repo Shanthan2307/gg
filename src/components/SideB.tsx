@@ -55,7 +55,7 @@ function Cassette() {
   return (
     <div className="mx-auto w-full max-w-[420px] rounded-[22px] bg-[#1e1d1b] p-4 shadow-2xl">
       <div className="rounded-xl bg-[#f4efe4] p-4 text-[#2a2826]">
-        <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] opacity-60">
+        <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] opacity-75">
           <span>Side {tracks[track].side}</span>
           <span>Gargi · mixtape</span>
         </div>
@@ -156,11 +156,11 @@ export default function SideB() {
             </div>
             <div className="mt-5 flex flex-wrap gap-3">
               <TactileButton href={`mailto:${profile.email}`}>Write to me ✉</TactileButton>
-              <a href={profile.linkedin} target="_blank" rel="noreferrer" className="flex items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
+              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
                 LinkedIn ↗
               </a>
               {profile.github && (
-                <a href={profile.github} target="_blank" rel="noreferrer" className="flex items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
+                <a href={profile.github} target="_blank" rel="noopener noreferrer" className="flex items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
                   GitHub ↗
                 </a>
               )}

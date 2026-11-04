@@ -21,6 +21,7 @@ export function ScrambleText({ words, interval = 2600, className }: { words: str
   const idx = useRef(0);
 
   useEffect(() => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let frame = 0;
     let raf = 0;
     const id = setInterval(() => {

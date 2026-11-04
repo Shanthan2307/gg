@@ -89,7 +89,7 @@ function Ticket({ h, index }: { h: (typeof hackathons)[number]; index: number })
   const field = (label: string, value?: string) => (
     <div>
       <p className="text-[9px] uppercase tracking-[0.2em] text-muted">{label}</p>
-      <p className={`mt-0.5 text-[12px] ${value ? "" : "text-muted/60"}`}>{value ?? "TBA"}</p>
+      <p className={`mt-0.5 text-[12px] ${value ? "" : "text-muted"}`}>{value ?? "TBA"}</p>
     </div>
   );
   return (
@@ -122,7 +122,7 @@ function Ticket({ h, index }: { h: (typeof hackathons)[number]; index: number })
         {field("Place", h.place)}
         {field("Prize", h.prize)}
         {h.link ? (
-          <a href={h.link} target="_blank" rel="noreferrer" className="text-[12px] underline underline-offset-4">
+          <a href={h.link} target="_blank" rel="noopener noreferrer" className="text-[12px] underline underline-offset-4">
             see the build ↗
           </a>
         ) : (
@@ -200,8 +200,8 @@ export default function Tickets() {
       </div>
 
       <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 sm:px-6">
-        <button onClick={() => pick(Math.max(0, active - 1))} className="h-9 w-9 rounded-full border border-line bg-surface" aria-label="Previous ticket">←</button>
-        <button onClick={() => pick(Math.min(hackathons.length - 1, active + 1))} className="h-9 w-9 rounded-full border border-line bg-surface" aria-label="Next ticket">→</button>
+        <button onClick={() => pick(Math.max(0, active - 1))} className="press h-9 w-9 rounded-full border border-line bg-surface" aria-label="Previous ticket">←</button>
+        <button onClick={() => pick(Math.min(hackathons.length - 1, active + 1))} className="press h-9 w-9 rounded-full border border-line bg-surface" aria-label="Next ticket">→</button>
         <span className="font-mono text-xs text-muted">
           {String(active + 1).padStart(2, "0")} / {String(hackathons.length).padStart(2, "0")}
         </span>

@@ -7,9 +7,9 @@
   --surface: #ffffff;
   --well: #f1f0ec;
   --ink: #1b1a18;
-  --muted: #76726b;
+  --muted: #69655e;
   --line: #e7e4de;
-  --accent: #d6492f; /* stamp red */
+  --accent: #c9402a; /* stamp red */
   --accent-2: #2f7d5b; /* matcha */
   --paper: #fffdf8;
 }
@@ -114,6 +114,43 @@ body {
   opacity: 0.38;
 }
 
+/* Small round controls: lift on hover, press into the page on click */
+.press {
+  transition: transform 0.2s cubic-bezier(0.3, 0.7, 0.3, 1), box-shadow 0.2s, border-color 0.2s;
+}
+.press:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--ink) 35%, transparent);
+  box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.35);
+}
+.press:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: 12px;
+  z-index: 100;
+  transform: translateY(-160%);
+  border-radius: 10px;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 8px 14px;
+  font-size: 14px;
+  transition: transform 0.2s;
+}
+.skip-link:focus-visible {
+  transform: none;
+}
+
 .grain {
   background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
   background-size: 4px 4px;
@@ -131,3 +168,4 @@ body {
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes breathe { 0%, 100% { transform: scale(0.8); opacity: 0.6; } 50% { transform: scale(1.15); opacity: 0; } }
 @keyframes blink { 50% { opacity: 0; } }
+@keyframes pulse-dot { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.8; } }

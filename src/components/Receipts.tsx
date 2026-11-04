@@ -27,10 +27,10 @@ function Printer({ r }: { r: (typeof receipts)[number] }) {
             transition={{ duration: 1.1, ease: [0.3, 0.7, 0.3, 1] }}
             className="receipt-edge bg-paper px-5 pb-8 pt-6 font-mono text-[12px] text-[#2a2826] shadow-md"
           >
-            <p className="text-center text-[10px] tracking-[0.3em] opacity-60">*** RECEIPT ***</p>
+            <p className="text-center text-[10px] tracking-[0.3em] opacity-75">*** RECEIPT ***</p>
             <p className="mt-3 text-center text-[15px] font-bold uppercase">{r.company}</p>
             <p className="text-center text-[11px] opacity-70">{r.role}</p>
-            <p className="text-center text-[11px] opacity-50">{r.city} · {r.when}</p>
+            <p className="text-center text-[11px] opacity-75">{r.city} · {r.when}</p>
             <div className="my-3 border-t border-dashed border-[#2a2826]/40" />
             {r.lines.map(([k, v], i) => (
               <motion.div
@@ -60,7 +60,7 @@ function Printer({ r }: { r: (typeof receipts)[number] }) {
                 ★ {r.badge}
               </motion.p>
             )}
-            <p className="mt-5 text-center text-[10px] opacity-50">THANK YOU · COME AGAIN</p>
+            <p className="mt-5 text-center text-[10px] opacity-75">THANK YOU · COME AGAIN</p>
             <div className="mt-2 flex h-6 justify-center gap-[2px]" aria-hidden>
               {Array.from({ length: 40 }, (_, i) => (
                 <span key={i} className="h-full bg-[#2a2826]" style={{ width: (i * 5) % 3 === 0 ? 2 : 1 }} />
@@ -99,7 +99,7 @@ export default function Receipts() {
                   >
                     <span className="text-[10px]">{i + 1}</span>
                   </span>
-                  <span className="relative z-10 flex-1">
+                  <span className="relative z-10 flex-1 transition-transform duration-300 ease-out group-hover:translate-x-1.5">
                     <span className="block font-mono text-[10.5px] uppercase tracking-[0.15em] text-muted">{r.when}</span>
                     <span className={`block text-[17px] transition-colors ${on ? "text-ink" : "text-ink/70 group-hover:text-ink"}`}>
                       {r.company}

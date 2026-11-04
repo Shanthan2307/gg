@@ -15,6 +15,11 @@ export default function Toolbox() {
 
   useEffect(() => {
     if (!inView) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setTyped(cmd);
+      setCount(stack.length + 1);
+      return;
+    }
     let i = 0;
     const t = setInterval(() => {
       i++;
@@ -46,7 +51,7 @@ export default function Toolbox() {
           <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
           <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
           <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-          <span className="ml-3 text-[11px] text-white/40">~/gargi — zsh</span>
+          <span className="ml-3 text-[11px] text-white/60">~/gargi · zsh</span>
         </div>
         <div className="min-h-[260px] p-5">
           <p>

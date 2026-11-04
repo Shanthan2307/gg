@@ -1,0 +1,93 @@
+/* Fit the anatomy kit's card to the site: its palette, radius and type.
+   :not(#_) lifts these over the kit's theme blocks without !important. */
+:root:not(#_) .resq.iso {
+  --anatomy-card: var(--surface);
+  --anatomy-paper: var(--surface);
+  --anatomy-text: var(--ink);
+  --anatomy-muted: var(--muted);
+  --anatomy-lit: var(--accent);
+  --anatomy-red: var(--accent);
+  --anatomy-mono: var(--font-mono), ui-monospace, monospace;
+  margin: 0;
+}
+:root:not([data-theme="dark"]):not(#_) .resq.iso {
+  --anatomy-lit-top: #fff4f1;
+  --anatomy-lit-shade: #f6e2dc;
+}
+[data-theme="dark"]:not(#_) .resq.iso {
+  --anatomy-lit-top: #3a2620;
+  --anatomy-lit-shade: #2d1d18;
+}
+.resq .iso-plate {
+  border-radius: 18px;
+  box-shadow: 0 0 0 1px var(--line), 0 8px 24px -16px rgba(0, 0, 0, 0.12);
+  padding: 48px 18px 56px;
+}
+.resq .iso-plate-corner {
+  font-size: 11px;
+}
+.resq .iso-legend {
+  font-size: 13.5px;
+}
+.resq-stage {
+  outline-offset: 6px;
+  border-radius: 12px;
+}
+.resq-route {
+  stroke-width: 1.1;
+}
+.resq-shadow {
+  fill: var(--anatomy-halo);
+  filter: blur(4px);
+  opacity: 0.7;
+}
+.resq-center {
+  cursor: pointer;
+}
+.resq-center .iso-edge {
+  transition: stroke 0.2s;
+}
+.resq-center:hover > .iso-solid > .iso-edge,
+.resq-stage[data-target="a"] [data-center="a"] > .iso-solid > .iso-edge,
+.resq-stage[data-target="b"] [data-center="b"] > .iso-solid > .iso-edge,
+.resq-stage[data-target="c"] [data-center="c"] > .iso-solid > .iso-edge {
+  stroke: var(--anatomy-lit);
+}
+.resq-picks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+.resq-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.resq-pick .font-mono {
+  color: var(--ink);
+}
+.resq-pick[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+@media (max-width: 560px) {
+  .resq .iso-plate {
+    padding: 44px 8px 64px;
+  }
+  /* the buttons carry the interaction on touch, so the key hint gives its corner to the readout */
+  .resq .iso-plate-corner[data-corner="hint"] {
+    display: none;
+  }
+  .resq .iso-plate-corner[data-corner="readout"] {
+    left: 0;
+    text-align: center;
+  }
+}

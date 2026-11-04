@@ -117,7 +117,7 @@ export type Receipt = {
 export const receipts: Receipt[] = [
   {
     id: "betenbough",
-    when: "May – Aug 2024",
+    when: "May to Aug 2024",
     company: "Betenbough Homes",
     role: "Software Engineering Intern",
     city: "Lubbock, TX",
@@ -132,7 +132,7 @@ export const receipts: Receipt[] = [
   },
   {
     id: "headstarter",
-    when: "Jul – Sep 2024",
+    when: "Jul to Sep 2024",
     company: "Headstarter AI",
     role: "Software Engineering Fellow",
     city: "Hybrid",
@@ -145,7 +145,7 @@ export const receipts: Receipt[] = [
   },
   {
     id: "wecracked",
-    when: "Jul 2024 – Mar 2025",
+    when: "Jul 2024 to Mar 2025",
     company: "WeCracked",
     role: "Back End Developer",
     city: "Remote",
@@ -157,7 +157,7 @@ export const receipts: Receipt[] = [
   },
   {
     id: "p2e",
-    when: "Oct 2024 – Jan 2025",
+    when: "Oct 2024 to Jan 2025",
     company: "Propel2Excel",
     role: "Fellow",
     city: "Remote",
@@ -169,7 +169,7 @@ export const receipts: Receipt[] = [
   },
   {
     id: "kiechler",
-    when: "Jan – May 2025",
+    when: "Jan to May 2025",
     company: "Kiechler Law Firm",
     role: "Web Developer",
     city: "Houston, TX",
@@ -183,7 +183,7 @@ export const receipts: Receipt[] = [
   },
   {
     id: "launchx",
-    when: "Jun – Aug 2025",
+    when: "Jun to Aug 2025",
     company: "LaunchX @ UC Berkeley",
     role: "Technology Intern",
     city: "Berkeley, CA",
@@ -197,7 +197,7 @@ export const receipts: Receipt[] = [
   },
   {
     id: "ttu-research",
-    when: "Oct 2025 – May 2026",
+    when: "Oct 2025 to May 2026",
     company: "Texas Tech University",
     role: "Research Assistant",
     city: "Lubbock, TX",
@@ -236,20 +236,20 @@ export const research = [
 ];
 
 export const stamps: { icon: string; title: string; org: string; when: string; story: string }[] = [
-  { icon: "♛", title: "President", org: "Girls Who Code @ TTU", when: "2025 – now", story: "Helping students turn code into startups, with outreach across Lubbock and Amarillo." },
-  { icon: "★", title: "President Select Ambassador", org: "Texas Tech", when: "2024 – 26", story: "Leads student ambassadors, gives tours and helps families decide Tech is home." },
-  { icon: "◎", title: "Global Guide", org: "Office of International Affairs", when: "2023 – 25", story: "Mentors international students. Her own story was featured on the Cultural Exchange site." },
-  { icon: "⌂", title: "Community Advisor", org: "Chitwood/Weymouth", when: "2023 – 25", story: "Built a welcoming hall: events, mediation and support for residents." },
-  { icon: "§", title: "SGA Senator", org: "First-Year Council", when: "2022 – 23", story: "Pushed for mental-health resources, better labs and a revamped career fair." },
+  { icon: "♛", title: "President", org: "Girls Who Code @ TTU", when: "2025 to now", story: "Helping students turn code into startups, with outreach across Lubbock and Amarillo." },
+  { icon: "★", title: "President Select Ambassador", org: "Texas Tech", when: "2024 to 2026", story: "Leads student ambassadors, gives tours and helps families decide Tech is home." },
+  { icon: "◎", title: "Global Guide", org: "Office of International Affairs", when: "2023 to 2025", story: "Mentors international students. Her own story was featured on the Cultural Exchange site." },
+  { icon: "⌂", title: "Community Advisor", org: "Chitwood/Weymouth", when: "2023 to 2025", story: "Built a welcoming hall: events, mediation and support for residents." },
+  { icon: "§", title: "SGA Senator", org: "First-Year Council", when: "2022 to 2023", story: "Pushed for mental-health resources, better labs and a revamped career fair." },
   { icon: "¶", title: "RHA Senator", org: "Complex Council", when: "2023", story: "Voice for 900 residents. Planned events for 50+ residents to boost wellbeing." },
   { icon: "➚", title: "Orientation Leader", org: "Red Raider Orientation", when: "2024", story: "Ran high-energy icebreakers and campus tours for new Red Raiders." },
   { icon: "✦", title: "Internal VP", org: "Society of Women Engineers", when: "", story: "Keeps the chapter running from the inside." },
   { icon: "⬡", title: "Lead Education Officer", org: "Web3 Acceleration Assoc.", when: "", story: "Teaches blockchain basics to new builders." },
-  { icon: "$", title: "Treasurer", org: "Geoscience Leadership Org. for Women", when: "2023 – 24", story: "Ran budgets, fundraising and grant campaigns." },
-  { icon: "☕", title: "Hospitality Advisor", org: "Campus Dining Committee", when: "2024 – 25", story: "Compared prices with off-campus receipts and pitched a points-rewards system for the dining app." },
-  { icon: "♥", title: "LYFE Mentor", org: "ConocoPhillips × TTU", when: "2024 – 26", story: "One-on-one mentoring that turned a struggling mentee's grades around." },
+  { icon: "$", title: "Treasurer", org: "Geoscience Leadership Org. for Women", when: "2023 to 2024", story: "Ran budgets, fundraising and grant campaigns." },
+  { icon: "☕", title: "Hospitality Advisor", org: "Campus Dining Committee", when: "2024 to 2025", story: "Compared prices with off-campus receipts and pitched a points-rewards system for the dining app." },
+  { icon: "♥", title: "LYFE Mentor", org: "ConocoPhillips × TTU", when: "2024 to 2026", story: "One-on-one mentoring that turned a struggling mentee's grades around." },
   { icon: "✿", title: "Best Mentor of the Year", org: "Tech Leadership Institute", when: "", story: "Went from mentee to the institute's mentor of the year." },
-  { icon: "⚑", title: "TrUE Scholar", org: "Toreador → Matador", when: "2023 – 26", story: "Promoted within Texas Tech's undergraduate research program." },
+  { icon: "⚑", title: "TrUE Scholar", org: "Toreador → Matador", when: "2023 to 2026", story: "Promoted within Texas Tech's undergraduate research program." },
 ];
 
 export const cards: { rank: string; suit: string; title: string; detail: string; foil?: boolean }[] = [

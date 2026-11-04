@@ -1,7 +1,9 @@
 import Dock from "@/components/Dock";
+import Motion from "@/components/Motion";
 import Hand from "@/components/Hand";
 import Hero from "@/components/Hero";
 import Lab from "@/components/Lab";
+import NowBuilding from "@/components/NowBuilding";
 import Numbers from "@/components/Numbers";
 import Passport from "@/components/Passport";
 import Receipts from "@/components/Receipts";
@@ -11,9 +13,11 @@ import Toolbox from "@/components/Toolbox";
 
 export default function Home() {
   return (
-    <main className="overflow-x-clip">
+    <Motion>
+    <main id="main" className="overflow-x-clip">
       <Hero />
       <Numbers />
+      <NowBuilding />
       <Tickets />
       <Receipts />
       <Lab />
@@ -23,5 +27,6 @@ export default function Home() {
       <SideB />
       <Dock />
     </main>
+    </Motion>
   );
 }

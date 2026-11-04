@@ -30,13 +30,14 @@ export default function Lab() {
           </div>
         </div>
 
-        <button onClick={next} className="relative h-[380px] w-full text-left" aria-label="Show next research project">
+        <button onClick={next} className="group relative h-[380px] w-full text-left">
+          <span className="sr-only">Show the next research project.</span>
           <AnimatePresence initial={false}>
             {order.map((idx, pos) => {
               const r = research[idx];
               const body = (
                 <div className="grain flex h-full flex-col rounded-2xl border border-line bg-paper p-6 text-[#2a2826]">
-                  <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] opacity-60">
+                  <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] opacity-75">
                     <span>URC · {r.year}</span>
                     <span>fig. {idx + 1}</span>
                   </div>
@@ -48,9 +49,9 @@ export default function Lab() {
                         🏆 2 awards
                       </span>
                     ) : (
-                      <span className="font-mono text-[10px] uppercase tracking-widest opacity-50">presented</span>
+                      <span className="font-mono text-[10px] uppercase tracking-widest opacity-75">presented</span>
                     )}
-                    {pos === 0 && <span className="font-mono text-[10px] opacity-50">tap for next →</span>}
+                    {pos === 0 && <span className="font-mono text-[10px] opacity-75">tap for next →</span>}
                   </div>
                 </div>
               );
@@ -62,7 +63,10 @@ export default function Lab() {
                   animate={{ y: pos * 18, scale: 1 - pos * 0.05, rotate: pos === 0 ? 0 : pos % 2 ? 2.5 : -2.5, opacity: 1 }}
                   transition={{ type: "spring", stiffness: 260, damping: 24 }}
                 >
-                  {r.award ? <Foil className="h-full rounded-2xl">{body}</Foil> : body}
+                  {/* the top page lifts off the stack on hover */}
+                  <div className={`h-full transition-transform duration-300 ease-out ${pos === 0 ? "group-hover:-translate-y-2 group-hover:-rotate-1" : ""}`}>
+                    {r.award ? <Foil className="h-full rounded-2xl">{body}</Foil> : body}
+                  </div>
                 </motion.div>
               );
             })}

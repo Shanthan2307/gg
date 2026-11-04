@@ -58,13 +58,15 @@ function Constellation() {
         ctx.globalAlpha = 0.25;
         ctx.beginPath(); ctx.arc(a.x, a.y, 1.4, 0, Math.PI * 2); ctx.fill();
       }
-      raf = requestAnimationFrame(draw);
+      // reduced motion: the dots stay put and only redraw when the pointer moves
+      if (!reduce) raf = requestAnimationFrame(draw);
     };
     draw();
     const onMove = (e: PointerEvent) => {
       const r = canvas.getBoundingClientRect();
       mouse.x = e.clientX - r.left;
       mouse.y = e.clientY - r.top;
+      if (reduce) draw();
     };
     window.addEventListener("resize", resize);
     window.addEventListener("pointermove", onMove);
@@ -80,7 +82,7 @@ function Constellation() {
 /* Signature that draws itself on mount, then fills in */
 function Signature({ text }: { text: string }) {
   return (
-    <svg viewBox="0 0 520 170" className="h-auto w-full max-w-[560px]" role="img" aria-label={text}>
+    <svg viewBox="0 0 520 170" className="h-auto w-full max-w-[560px] lg:max-w-[700px]" role="img" aria-label={text}>
       <motion.text
         x="10"
         y="125"
@@ -137,7 +139,7 @@ export default function Hero() {
           <TactileButton href="#tickets">
             Open the log <span aria-hidden>→</span>
           </TactileButton>
-          <a href="#contact" className="text-sm text-muted underline-offset-4 hover:text-ink hover:underline">
+          <a href="#contact" className="inline-block py-1.5 text-sm text-muted underline-offset-4 hover:text-ink hover:underline">
             or say hi
           </a>
         </div>

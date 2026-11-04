@@ -24,7 +24,7 @@ export default function Passport() {
         <div className="grain relative rounded-xl border border-line bg-[color-mix(in_oklab,var(--paper)_88%,var(--accent-2))] p-5 dark:bg-[#1f2420] sm:p-8">
           <div className="mb-6 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-muted">
             <span>Visas · Texas Tech University</span>
-            <span>2022 — 2026</span>
+            <span>2022 to 2026</span>
           </div>
           <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4 lg:grid-cols-5">
             {stamps.map((s, i) => {
@@ -45,7 +45,7 @@ export default function Passport() {
                   <span className="text-2xl leading-none">{s.icon}</span>
                   <span className="mt-1.5 font-mono text-[9.5px] font-bold uppercase leading-tight tracking-wider">{s.title}</span>
                   <span className="mt-1 text-[9px] leading-tight opacity-70">{s.org}</span>
-                  {s.when && <span className="mt-1 font-mono text-[8.5px] opacity-60">{s.when}</span>}
+                  {s.when && <span className="mt-1 font-mono text-[8.5px] opacity-75">{s.when}</span>}
                 </motion.button>
               );
             })}
