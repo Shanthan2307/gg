@@ -85,6 +85,13 @@ function ArcTimeline({ active, onPick }: { active: number; onPick: (i: number) =
   );
 }
 
+/* Long event names shrink to their first and last words so they fit the stamp ("TIDAL 2025") */
+const stampName = (event: string) => {
+  if (event.length <= 14) return event;
+  const words = event.split(" ");
+  return `${words[0]} ${words[words.length - 1]}`;
+};
+
 function Ticket({ h, index }: { h: (typeof hackathons)[number]; index: number }) {
   const field = (label: string, value?: string) => (
     <div>
@@ -136,7 +143,7 @@ function Ticket({ h, index }: { h: (typeof hackathons)[number]; index: number })
         </div>
         {h.result && (
           <div className="absolute right-3 top-3 sm:right-8 sm:top-auto sm:bottom-14">
-            <Stamp label={h.result} sub={h.event ? h.event.slice(0, 14) : "Build log"} rotate={-14 + index * 5} />
+            <Stamp label={h.result} sub={h.event ? stampName(h.event) : "Build log"} rotate={-14 + index * 5} />
           </div>
         )}
       </div>

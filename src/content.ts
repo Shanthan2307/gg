@@ -8,7 +8,7 @@ export const profile = {
   school: "CS @ Texas Tech",
   email: "Gargipathak@gmail.com",
   linkedin: "https://www.linkedin.com/in/garrgipathak/",
-  github: "", // add when available
+  github: "https://github.com/garrgi3", // from her Devpost profile
   topmate: "https://topmate.io/garrgi",
   x: "https://x.com/0xgarrgi",
   resume: "/gargi-pathak-resume.pdf", // phone number removed from the public copy
@@ -58,8 +58,12 @@ export const hackathons: Hackathon[] = [
     tagline: "GPS for drones, aid for the fire line.",
     story:
       "Started as a blockchain relief network that routes donations between fire stations and relief centers during wildfires, with real-time tracking and automatic ZIP-code matching. Now it's growing into GPS for drones.",
-    stack: ["Midnight", "Ethereum", "React", "Node"],
+    stack: ["Rust", "Python", "TypeScript", "Django"],
     visual: "quorum",
+    event: "TIDALHACK:26",
+    place: "Texas A&M, College Station",
+    date: "Feb 2026",
+    link: "https://devpost.com/software/resq-srnvyh",
     result: "SHIPPED", // change to "WINNER" once confirmed
   },
   {
@@ -68,8 +72,12 @@ export const hackathons: Hackathon[] = [
     tagline: "Your voice is the password, and it can't be faked.",
     story:
       "Voice biometric authentication that stops spoofing and impersonation. 94% model accuracy, trained on SageMaker, answering in under 200ms for banking, meetings and assistants.",
-    stack: ["TensorFlow", "AWS SageMaker", "Cloudflare", "OAuth"],
+    stack: ["PyTorch", "AWS", "Django", "React"],
     visual: "voice",
+    event: "TIDAL Hackathon Spring 2025",
+    place: "Texas A&M, College Station",
+    date: "Mar 2025",
+    link: "https://devpost.com/software/resona",
     result: "SHIPPED", // change to "WINNER" once confirmed
   },
   {
@@ -78,9 +86,12 @@ export const hackathons: Hackathon[] = [
     tagline: "Why does walking have to hurt?",
     story:
       "An AI pipeline that turns foot scans into 3D-printed, eco-filament insoles, for flat feet, fracture recovery and pregnancy. A reusable Persona profile makes every next pair faster.",
-    stack: ["Python", "3D modeling", "STL", "Commure"],
+    stack: ["Next.js", "Three.js", "STL", "Tailwind"],
     visual: "insole",
+    event: "HackRice 15",
+    place: "Rice University, Houston",
     date: "Sep 2025",
+    link: "https://devpost.com/software/neurosole",
     result: "SHIPPED", // change to "WINNER" once confirmed
   },
   {
