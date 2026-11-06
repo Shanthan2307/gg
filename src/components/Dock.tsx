@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { setMode, useMode } from "./theme";
 
 const items = [
@@ -47,8 +47,40 @@ export default function Dock() {
   const mouseX = useMotionValue(Infinity);
   const mode = useMode();
   const toggle = () => setMode(mode === "blossom" ? "matcha" : "blossom");
+
+  // On phones the dock steps aside while you scroll down, so it never sits on the content you are
+  // reading, and comes back when you scroll up, stop near the top, or reach the end of the page.
+  const [tucked, setTucked] = useState(false);
+  useEffect(() => {
+    let last = window.scrollY;
+    let frame = 0;
+    const check = () => {
+      frame = 0;
+      const y = window.scrollY;
+      const phone = window.innerWidth < 768;
+      const atEnd = y + window.innerHeight >= document.documentElement.scrollHeight - 80;
+      if (!phone || y < 60 || atEnd) setTucked(false);
+      else if (Math.abs(y - last) > 6) setTucked(y > last);
+      last = y;
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(check);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   return (
-    <nav className="fixed inset-x-0 bottom-4 z-50 flex justify-center px-4">
+    <nav
+      // keyboard focus always brings it back
+      onFocus={() => setTucked(false)}
+      className={`fixed inset-x-0 bottom-4 z-50 flex justify-center px-4 transition-transform duration-300 ease-out ${tucked ? "translate-y-[calc(100%+24px)]" : ""}`}
+    >
       <div
         onMouseMove={(e) => mouseX.set(e.clientX)}
         onMouseLeave={() => mouseX.set(Infinity)}

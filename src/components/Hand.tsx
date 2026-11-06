@@ -32,9 +32,9 @@ export default function Hand() {
   const [played, setPlayed] = useState<number | null>(null);
   const n = cards.length;
   // Horizontal gap and tilt per card, kept small enough that the outer cards stay inside the table
-  const [layout, setLayout] = useState({ spread: 46, tilt: 5 });
+  const [layout, setLayout] = useState({ spread: 46, tilt: 5, lift: 175 });
   useEffect(() => {
-    const fit = () => setLayout(window.innerWidth < 640 ? { spread: 20, tilt: 3 } : { spread: 46, tilt: 5 });
+    const fit = () => setLayout(window.innerWidth < 640 ? { spread: 20, tilt: 3, lift: 112 } : { spread: 46, tilt: 5, lift: 175 });
     fit();
     window.addEventListener("resize", fit);
     return () => window.removeEventListener("resize", fit);
@@ -49,7 +49,7 @@ export default function Hand() {
       />
 
       <div
-        className="well relative h-[440px] overflow-hidden sm:h-[480px]"
+        className="well relative h-[372px] overflow-hidden sm:h-[480px]"
         onClick={(e) => e.target === e.currentTarget && setPlayed(null)}
       >
         {cards.map((c, i) => {
@@ -76,7 +76,7 @@ export default function Hand() {
               <motion.div
                 className="h-full w-full rounded-[14px] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.35)]"
                 animate={{
-                  y: isPlayed ? -175 : lifted ? -44 : 0,
+                  y: isPlayed ? -layout.lift : lifted ? -44 : 0,
                   rotate: lifted ? -fan : 0,
                   scale: isPlayed ? 1.08 : 1,
                   filter: played !== null && !isPlayed ? "brightness(0.9) saturate(0.4)" : "brightness(1) saturate(1)",

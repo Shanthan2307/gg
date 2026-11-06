@@ -127,7 +127,7 @@ export default function Hero() {
     <section id="top" className="relative overflow-hidden">
       <Constellation />
       <SeasonScene />
-      <div className="relative z-10 mx-auto flex min-h-[92svh] max-w-5xl flex-col justify-center px-4 pb-48 pt-16 sm:px-6 md:pb-24">
+      <div className="relative z-10 mx-auto flex max-w-5xl flex-col justify-center px-4 pb-48 pt-12 sm:px-6 md:min-h-[92svh] md:pb-24 md:pt-16">
         <div className="flex items-center gap-3">
           <span className="font-gothic text-2xl">Gargi&apos;s</span>
           <span className="text-sm text-muted">Build Log</span>

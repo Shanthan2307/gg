@@ -304,7 +304,7 @@ export default function SeasonScene() {
           className={
             mode === "blossom"
               ? "absolute right-0 top-0 h-[42%] w-full opacity-60 md:h-[78%] md:opacity-100"
-              : "absolute bottom-0 right-[-4%] h-[24%] w-full md:bottom-[6%] md:right-0 md:h-[72%]"
+              : "absolute bottom-0 right-[-4%] h-[21%] w-full md:bottom-[6%] md:right-0 md:h-[72%]"
           }
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
