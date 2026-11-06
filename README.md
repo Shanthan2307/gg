@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Build Log · Gargi Pathak
 
-## Getting Started
+Portfolio for Gargi Pathak, live at **[garrgi.xyz](https://garrgi.xyz)**.
 
-First, run the development server:
+Every part of her story is a physical object: hackathons are tickets, internships print receipts, campus roles are passport stamps, research is a lab notebook and honors are cards in a hand. A live isometric figure shows how ResQ routes aid by ZIP code.
+
+## Modes
+
+- **Cherry blossom** (default): a branch grows in from the hero edge, blooms and throws petals; petals drift behind the page as you scroll.
+- **Matcha**: a chawan being whisked, with a tea caddy and scoop; matcha powder and tea leaves rise in the background.
+
+Toggle with the last dock button. The choice is remembered, and reduced-motion visitors get still scenes.
+
+## Editing content
+
+Almost all text lives in [`src/content.ts`](src/content.ts): profile and links, numbers, hackathon tickets, internships, research, campus roles and honors. Hackathon entries are data-driven, so a new win is one new object; fill `event`, `place`, `prize`, `date` and `link` when known (missing ones show `TBA`).
+
+The resume is served from [`public/gargi-pathak-resume.pdf`](public/gargi-pathak-resume.pdf). Its phone number is removed on purpose; keep it out when replacing the file.
+
+## Develop
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The site is deployed with the Vercel CLI (project `garrgi`), not from Git pushes:
 
-## Learn More
+```bash
+vercel deploy --prod
+```
 
-To learn more about Next.js, take a look at the following resources:
+`NEXT_PUBLIC_SITE_URL` is set to `https://garrgi.xyz` in Vercel production, and drives the canonical link, Open Graph image and sitemap. `www.garrgi.xyz` redirects to `garrgi.xyz`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Next.js 15 (App Router), React 19, Tailwind CSS 4, Framer Motion. The ResQ figure uses the [anatomy](https://github.com/wheresryan22/anatomy) isometric kit (MIT), copied into `src/components/iso/`.
