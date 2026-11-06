@@ -3,7 +3,7 @@ import { SectionHead } from "./ui";
 
 export default function NowBuilding() {
   return (
-    <section id="resq" className="mx-auto max-w-5xl px-4 py-24 sm:px-6">
+    <section id="resq" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-24">
       <div className="grid gap-10 lg:grid-cols-[280px_1fr] lg:items-start">
         <div className="lg:sticky lg:top-16">
           <SectionHead

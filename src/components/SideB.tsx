@@ -118,7 +118,7 @@ function Whisk() {
 export default function SideB() {
   const { copied, copy } = useCopy();
   return (
-    <section id="contact" className="mx-auto max-w-5xl px-4 pb-40 pt-28 sm:px-6">
+    <section id="contact" className="mx-auto max-w-5xl px-4 pb-32 pt-16 sm:px-6 md:pb-40 md:pt-28">
       <SectionHead
         kicker="07 · Side B"
         title={<>Off the clock, <em>on the record</em></>}
@@ -142,7 +142,7 @@ export default function SideB() {
               <span className="break-all font-display text-2xl">{profile.email}</span>
               <button
                 onClick={() => copy(profile.email)}
-                className="flex h-8 items-center gap-1.5 rounded-lg border border-line px-3 font-mono text-[11px] text-muted hover:text-ink"
+                className="flex h-10 items-center gap-1.5 rounded-lg border border-line px-3 font-mono text-[11px] text-muted hover:text-ink"
               >
                 {copied ? (
                   <>
@@ -156,17 +156,17 @@ export default function SideB() {
             </div>
             <div className="mt-5 flex flex-wrap gap-3">
               <TactileButton href={`mailto:${profile.email}`}>Write to me ✉</TactileButton>
-              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="press flex items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
+              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="press flex h-11 items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
                 LinkedIn ↗
               </a>
-              <a href={profile.x} target="_blank" rel="noopener noreferrer" className="press flex items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
+              <a href={profile.x} target="_blank" rel="noopener noreferrer" className="press flex h-11 items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
                 X ↗
               </a>
-              <a href={profile.topmate} target="_blank" rel="noopener noreferrer" className="press flex items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
+              <a href={profile.topmate} target="_blank" rel="noopener noreferrer" className="press flex h-11 items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
                 Book a call on Topmate ↗
               </a>
               {profile.github && (
-                <a href={profile.github} target="_blank" rel="noopener noreferrer" className="flex items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
+                <a href={profile.github} target="_blank" rel="noopener noreferrer" className="press flex h-11 items-center rounded-xl border border-line px-4 text-sm hover:bg-well">
                   GitHub ↗
                 </a>
               )}

@@ -40,7 +40,7 @@ export default function Toolbox() {
   const done = count > stack.length;
 
   return (
-    <section className="mx-auto max-w-5xl px-4 py-28 sm:px-6">
+    <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-28">
       <SectionHead
         kicker="06 · Toolbox"
         title={<>What&apos;s in the <em>kitchen</em></>}

@@ -41,11 +41,11 @@ export default function Hand() {
   }, []);
 
   return (
-    <section id="hand" className="mx-auto max-w-5xl px-4 py-28 sm:px-6">
+    <section id="hand" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-28">
       <SectionHead
         kicker="05 · Honors"
         title={<>The hand she&apos;s <em>holding</em></>}
-        blurb="Hover to thumb through, click a card to play it, click again to put it back. The shiny ones are foil, so move your cursor across them."
+        blurb="Point at a card to thumb through. Tap or click it to play it, and again to put it back. The shiny ones are foil, so drag across them."
       />
 
       <div

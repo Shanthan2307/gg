@@ -12,7 +12,7 @@ export default function Passport() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="passport" className="mx-auto max-w-5xl px-4 py-28 sm:px-6">
+    <section id="passport" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-28">
       <SectionHead
         kicker="04 · Beyond the code"
         title={<>A passport full of <em>stamps</em></>}

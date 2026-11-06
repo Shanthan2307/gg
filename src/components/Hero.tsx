@@ -152,7 +152,7 @@ export default function Hero() {
 
         <h1 className="mt-2 font-display text-3xl leading-snug sm:text-5xl">
           Currently{" "}
-          <ScrambleText words={profile.roles} className="font-mono text-[0.62em] italic text-accent" />
+          <ScrambleText words={profile.roles} className="block whitespace-nowrap font-mono text-[0.62em] italic text-accent sm:inline" />
         </h1>
 
         <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-muted">{profile.intro}</p>
@@ -165,7 +165,7 @@ export default function Hero() {
             or say hi
           </a>
           <a href="#hire" className="inline-block py-1.5 text-sm text-muted underline-offset-4 hover:text-ink hover:underline">
-            · wanna hire me?
+            <span aria-hidden className="max-sm:hidden">· </span>wanna hire me?
           </a>
         </div>
       </div>

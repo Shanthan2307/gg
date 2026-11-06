@@ -76,7 +76,7 @@ function ArcTimeline({ active, onPick }: { active: number; onPick: (i: number) =
       {hackathons.map((h, i) => (
         <g key={h.id} onClick={() => onPick(i)} className="cursor-pointer">
           <circle cx={gap * (i + 1)} cy={70} r={i === active ? 7 : 5} fill={i === active ? "var(--accent)" : "var(--surface)"} stroke="var(--ink)" strokeOpacity="0.4" style={{ transition: "all .25s" }} />
-          <text x={gap * (i + 1)} y={88} textAnchor="middle" fontSize="10" className="font-mono" fill={i === active ? "var(--ink)" : "var(--muted)"}>
+          <text x={gap * (i + 1)} y={88} textAnchor="middle" fontSize="10" className="font-mono max-sm:hidden" fill={i === active ? "var(--ink)" : "var(--muted)"}>
             {h.project}
           </text>
         </g>
@@ -124,7 +124,7 @@ function Ticket({ h, index }: { h: (typeof hackathons)[number]; index: number })
       {/* perforation */}
       <div className="mx-5 border-t-2 border-dashed border-line sm:mx-0 sm:my-5 sm:border-l-2 sm:border-t-0" />
       {/* tear-off stub */}
-      <div className="relative grid grid-cols-2 gap-4 p-5 font-mono sm:w-[170px] sm:grid-cols-1 sm:content-start">
+      <div className="relative grid grid-cols-2 gap-4 p-5 pb-8 font-mono sm:pb-5 sm:w-[170px] sm:grid-cols-1 sm:content-start">
         {field("Event", h.event)}
         {field("Place", h.place)}
         {field("Prize", h.prize)}
@@ -136,13 +136,13 @@ function Ticket({ h, index }: { h: (typeof hackathons)[number]; index: number })
           field("Link")
         )}
         {/* barcode */}
-        <div className="col-span-2 mt-2 flex h-8 items-end gap-[2px] sm:col-span-1" aria-hidden>
+        <div className="col-span-1 mt-2 flex h-8 items-end gap-[2px] overflow-hidden" aria-hidden>
           {Array.from({ length: 34 }, (_, i) => (
             <span key={i} className="bg-ink" style={{ width: (i * 7) % 3 === 0 ? 2 : 1, height: "100%", opacity: 0.75 }} />
           ))}
         </div>
         {h.result && (
-          <div className="absolute right-3 top-3 sm:right-8 sm:top-auto sm:bottom-14">
+          <div className="absolute bottom-3 right-3 sm:bottom-14 sm:right-8">
             <Stamp label={h.result} sub={h.event ? stampName(h.event) : "Build log"} rotate={-14 + index * 5} />
           </div>
         )}
@@ -187,7 +187,7 @@ export default function Tickets() {
   };
 
   return (
-    <section id="tickets" className="relative py-28">
+    <section id="tickets" className="relative py-16 md:py-28">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <SectionHead
           kicker="01 · Hackathon journey"
@@ -207,10 +207,12 @@ export default function Tickets() {
       </div>
 
       <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 sm:px-6">
-        <button onClick={() => pick(Math.max(0, active - 1))} className="press h-9 w-9 rounded-full border border-line bg-surface" aria-label="Previous ticket">←</button>
-        <button onClick={() => pick(Math.min(hackathons.length - 1, active + 1))} className="press h-9 w-9 rounded-full border border-line bg-surface" aria-label="Next ticket">→</button>
+        <button onClick={() => pick(Math.max(0, active - 1))} className="press h-11 w-11 rounded-full border border-line bg-surface sm:h-9 sm:w-9" aria-label="Previous ticket">←</button>
+        <button onClick={() => pick(Math.min(hackathons.length - 1, active + 1))} className="press h-11 w-11 rounded-full border border-line bg-surface sm:h-9 sm:w-9" aria-label="Next ticket">→</button>
         <span className="font-mono text-xs text-muted">
           {String(active + 1).padStart(2, "0")} / {String(hackathons.length).padStart(2, "0")}
+          {/* the arc's labels are too small to read on phones, so the counter names the ticket */}
+          <span className="sm:hidden"> · {hackathons[active].project}</span>
         </span>
       </div>
 

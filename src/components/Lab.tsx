@@ -11,7 +11,7 @@ export default function Lab() {
   const next = () => setOrder((o) => [...o.slice(1), o[0]]);
 
   return (
-    <section id="lab" className="mx-auto max-w-5xl px-4 py-28 sm:px-6">
+    <section id="lab" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-28">
       <div className="grid items-center gap-14 md:grid-cols-2">
         <div>
           <SectionHead

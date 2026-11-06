@@ -76,7 +76,7 @@ function Printer({ r }: { r: (typeof receipts)[number] }) {
 export default function Receipts() {
   const [sel, setSel] = useState(0);
   return (
-    <section id="receipts" className="mx-auto max-w-5xl px-4 py-28 sm:px-6">
+    <section id="receipts" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-28">
       <SectionHead
         kicker="02 · Internship journey"
         title={<>Every stop prints a <em>receipt</em></>}
